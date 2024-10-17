@@ -15,8 +15,10 @@ const ConsultationsListScreen = () => {
   const [consultations, setConsultations] = useState<Consultation[]>([]);
 
   useEffect(() => {
+
+    const storedUsername = localStorage.getItem("username");
     // Fetch consultations from the backend
-    axios.get('http://localhost:3000/api/consultations')
+    axios.get(`http://localhost:3000/api/consultations?username=${storedUsername}`)
       .then((response) => {
         setConsultations(response.data.consultations);
       })
